@@ -8,10 +8,12 @@ public class spawnManager : MonoBehaviour
     private float startDelay = 2;
     private float repeateRate = 2;
     private Vector3 spawnPos = new Vector3(25, 0, 0);
+    private playerController playerControllerScript;
     // Start is called before the first frame update
     void Start()
     {
            InvokeRepeating("SpawnObstacle", startDelay, repeateRate);
+           playerControllerScript = GameObject.Find("Player").GetComponent<playerController>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,10 @@ public class spawnManager : MonoBehaviour
     }
     void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+         if (playerControllerScript.gameOver == false)
+         {
+            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+         }
+        
     }
 }

@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     public float jumpForce = 10.0f;
     public float gravityModifier = 1;
     public bool isOnGround = true;
+    public bool gameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,14 @@ public class playerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision Collision)
     {
-        isOnGround = true;
+        
+        if(Collision.gameObject.CompareTag("ground"))
+        {
+            isOnGround = true;
+        } else if(Collision.gameObject.CompareTag("obstacle"))
+        {
+            Debug.Log("Game Over!");
+            gameOver = true;
+        }
     }
 }
