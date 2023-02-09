@@ -41,13 +41,14 @@ public class PlayerControllerX : MonoBehaviour
             playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
         }
 
-        if (transform.position.y < 0)
+        if (transform.position.y < 0 && !gameOver)
         {
             playerRb.AddForce(Vector3.up * 0.5f, ForceMode.Impulse);
             playerAudio.PlayOneShot(bounceSound, 1.0f);
         } else if (transform.position.y > 16)
         {
             playerRb.AddForce(Vector3.down * 0.5f, ForceMode.Impulse);
+            playerAudio.PlayOneShot(bounceSound, 1.0f);
         }
     }
 
